@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Gender } from "../../Config";
 import { useDispatch } from "react-redux";
 import { register } from "../../../_actions/user_actions";
+import moment from "moment";
 const { Title } = Typography;
 function RegisterPage(props) {
   const [email, setEmail] = useState("");
@@ -39,6 +40,7 @@ function RegisterPage(props) {
       password,
       username,
       gender,
+      image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`,
     };
     dispatch(register(body))
       .then((result) => {

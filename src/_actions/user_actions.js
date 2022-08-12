@@ -1,6 +1,12 @@
 import axios from "axios";
 import { USER_SERVER } from "../components/Config";
-import { AUTH_USER, USER_LOGIN, USER_LOGOUT, USER_REGISTER } from "./types";
+import {
+  ADD_TO_CART,
+  AUTH_USER,
+  USER_LOGIN,
+  USER_LOGOUT,
+  USER_REGISTER,
+} from "./types";
 
 export function register(body) {
   const request = axios
@@ -42,6 +48,17 @@ export function logout() {
 
   return {
     type: USER_LOGOUT,
+    payload: request,
+  };
+}
+
+export function addToCart(id) {
+  const request = axios
+    .post(`${USER_SERVER}/addToCart`, { productId: id })
+    .then((result) => result.data);
+
+  return {
+    type: ADD_TO_CART,
     payload: request,
   };
 }

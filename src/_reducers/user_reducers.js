@@ -1,4 +1,5 @@
 import {
+  ADD_TO_CART,
   AUTH_USER,
   USER_LOGIN,
   USER_LOGOUT,
@@ -18,6 +19,12 @@ export default function (state = {}, action) {
       break;
     case USER_LOGOUT:
       return { ...state };
+      break;
+    case ADD_TO_CART:
+      return {
+        ...state,
+        userData: { ...state.userData, cart: action.payload.cart },
+      };
       break;
     default:
       return state;

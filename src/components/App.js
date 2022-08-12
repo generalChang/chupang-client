@@ -5,6 +5,7 @@ import Footer from "./views/Footer/Footer";
 import LandingPage from "./views/LandingPage/LandingPage";
 import LoginPage from "./views/LoginPage/LoginPage";
 import NavBar from "./views/NavBar/NavBar";
+import ProductDetailPage from "./views/ProductDetailPage/ProductDetailPage";
 import ProductUploadPage from "./views/ProductUploadPage/ProductUploadPage";
 import RegisterPage from "./views/RegisterPage/RegisterPage";
 function App() {
@@ -20,6 +21,11 @@ function App() {
             path="/upload"
             exact
             component={Auth(ProductUploadPage, true)}
+          />
+          <Route
+            path="/product/:id"
+            exact
+            component={Auth(ProductDetailPage, null)}
           />
         </Switch>
       </div>

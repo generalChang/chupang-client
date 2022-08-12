@@ -5,9 +5,10 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../../_actions/user_actions";
-import { message } from "antd";
+import { message, Badge } from "antd";
 import { withRouter } from "react-router-dom";
-import { UploadOutlined } from "@ant-design/icons";
+import { UploadOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+
 function NavBar(props) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -42,6 +43,13 @@ function NavBar(props) {
           )}
           {user && user.userData && user.userData.isAuth && (
             <Nav>
+              <Nav.Link href="">
+                <Badge count={user.userData && user.userData.cart.length}>
+                  <ShoppingCartOutlined
+                    style={{ fontSize: "1.5rem", color: "white" }}
+                  />
+                </Badge>
+              </Nav.Link>
               <Nav.Link href="/upload">Upload</Nav.Link>
               <Nav.Link href="" onClick={handleLogout}>
                 Logout
