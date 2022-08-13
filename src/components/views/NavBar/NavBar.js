@@ -43,7 +43,7 @@ function NavBar(props) {
           )}
           {user && user.userData && user.userData.isAuth && (
             <Nav>
-              <Nav.Link href="">
+              <Nav.Link href="/user/cart">
                 <Badge count={user.userData && user.userData.cart.length}>
                   <ShoppingCartOutlined
                     style={{ fontSize: "1.5rem", color: "white" }}

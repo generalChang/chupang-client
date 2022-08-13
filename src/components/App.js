@@ -8,6 +8,7 @@ import NavBar from "./views/NavBar/NavBar";
 import ProductDetailPage from "./views/ProductDetailPage/ProductDetailPage";
 import ProductUploadPage from "./views/ProductUploadPage/ProductUploadPage";
 import RegisterPage from "./views/RegisterPage/RegisterPage";
+import CartPage from "./views/CartPage/CartPage";
 function App() {
   return (
     <div>
@@ -27,6 +28,8 @@ function App() {
             exact
             component={Auth(ProductDetailPage, null)}
           />
+
+          <Route path="/user/cart" exact component={Auth(CartPage, true)} />
         </Switch>
       </div>
       <Footer />

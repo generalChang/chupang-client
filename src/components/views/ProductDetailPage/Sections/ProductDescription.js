@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Button, Descriptions, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../../_actions/user_actions";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+
 function ProductDescription(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);

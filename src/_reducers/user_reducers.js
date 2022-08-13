@@ -1,6 +1,8 @@
 import {
   ADD_TO_CART,
   AUTH_USER,
+  GET_CART_ITEMS,
+  REMOVE_FROM_CART,
   USER_LOGIN,
   USER_LOGOUT,
   USER_REGISTER,
@@ -24,8 +26,21 @@ export default function (state = {}, action) {
       return {
         ...state,
         userData: { ...state.userData, cart: action.payload.cart },
+        // cart값을 언제든 빼다쓸수있다.
       };
       break;
+    case GET_CART_ITEMS:
+      return {
+        ...state,
+        cartDetail: action.payload.products,
+        // cartDetail을 어디서든 빼다쓸수있다.
+      };
+    case REMOVE_FROM_CART:
+      return {
+        ...state,
+        cartDetail: action.payload.productInfo,
+        userData: { ...state.userData, cart: action.payload.cart },
+      };
     default:
       return state;
   }
