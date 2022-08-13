@@ -14,8 +14,9 @@ import CheckBox from "./Sections/CheckBox";
 import axios from "axios";
 import ImageSlider from "../../../utils/ImageSlider";
 import RadioBox from "./Sections/RadioBox";
-import { Price } from "../../Config";
+import { API_URL, Price } from "../../Config";
 import SearchTerm from "./Sections/SearchTerm";
+
 const { Title } = Typography;
 const { Meta } = Card;
 function LandingPage() {
@@ -30,7 +31,7 @@ function LandingPage() {
   const [searchText, setSearchText] = useState("");
   const getProducts = (body) => {
     axios
-      .post("/api/product/products", body)
+      .post(`${API_URL}/api/product/products`, body)
       .then((result) => {
         if (result.data.success) {
           if (body.loadMore) {
