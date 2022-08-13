@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
-import { Typography, message, Row, Col } from "antd";
+import { Typography, message, Row, Col, Button } from "antd";
 import axios from "axios";
 import ProductImage from "./Sections/ProductImage";
 import ProductDescription from "./Sections/ProductDescription";
@@ -11,6 +11,9 @@ function ProductDetailPage(props) {
   const productId = props.match.params.id;
   const [product, setProduct] = useState(null);
   const [comments, setComments] = useState([]);
+  const [limit, setLimit] = useState(10);
+  const [skip, setSkip] = useState(0);
+  const [isNext, setIsNext] = useState(false);
   useEffect(() => {
     axios
       .get(`/api/product/productById?type=single&id=${productId}`)
@@ -27,6 +30,8 @@ function ProductDetailPage(props) {
 
     let body = {
       productId,
+      skip,
+      limit,
     };
     getComments(body);
   }, []);
@@ -36,7 +41,12 @@ function ProductDetailPage(props) {
       .post("/api/comment/comments", body)
       .then((result) => {
         if (result.data.success) {
-          setComments(result.data.comments);
+          if (body.loadMore) {
+            setComments([...comments, ...result.data.comments]);
+          } else {
+            setComments(result.data.comments);
+          }
+          setIsNext(result.data.isNext);
         } else {
           message.warning("Failed to get comments... sorry..");
         }
@@ -49,9 +59,27 @@ function ProductDetailPage(props) {
   const updateComments = () => {
     let body = {
       productId,
+      limit,
+      skip: 0,
+    };
+
+    setSkip(0);
+    getComments(body);
+  };
+
+  const handleLoadMore = (e) => {
+    e.preventDefault();
+
+    let newSkip = skip + limit;
+    let body = {
+      productId,
+      skip: newSkip,
+      limit,
+      loadMore: true,
     };
 
     getComments(body);
+    setSkip(newSkip);
   };
   return (
     <div style={{ width: "85%", margin: "4rem auto" }}>
@@ -84,6 +112,19 @@ function ProductDetailPage(props) {
                   updateComments={updateComments}
                   productId={productId}
                 />
+                <div
+                  style={{
+                    marginTop: "1rem auto",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  {isNext && (
+                    <Button type="primary" danger onClick={handleLoadMore}>
+                      더보기
+                    </Button>
+                  )}
+                </div>
               </Col>
             </Row>
           </div>

@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Button, Divider, Form, Input, message, Typography } from "antd";
+import {
+  Button,
+  Divider,
+  Form,
+  Input,
+  message,
+  Typography,
+  Tooltip,
+} from "antd";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../../_actions/user_actions";
@@ -84,6 +92,11 @@ function LoginPage(props) {
           <Input type="password" value={password} onChange={onChangePassword} />
         </Form.Item>
 
+        <Tooltip title="Reset your password!">
+          <Typography.Link href="/user/resetPassword">
+            Forget password?
+          </Typography.Link>
+        </Tooltip>
         <Button
           type="primary"
           size="large"

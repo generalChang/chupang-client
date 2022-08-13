@@ -9,6 +9,9 @@ import ProductDetailPage from "./views/ProductDetailPage/ProductDetailPage";
 import ProductUploadPage from "./views/ProductUploadPage/ProductUploadPage";
 import RegisterPage from "./views/RegisterPage/RegisterPage";
 import CartPage from "./views/CartPage/CartPage";
+import PasswordResetPage from "./views/PasswordResetPage/PasswordResetPage";
+import UpdatePasswordPage from "./views/UpdatePasswordPage/UpdatePasswordPage";
+
 function App() {
   return (
     <div>
@@ -30,6 +33,16 @@ function App() {
           />
 
           <Route path="/user/cart" exact component={Auth(CartPage, true)} />
+          <Route
+            path="/user/resetPassword"
+            exact
+            component={Auth(PasswordResetPage, false)}
+          />
+          <Route
+            path="/user/updatePassword"
+            exact
+            component={Auth(UpdatePasswordPage, true)}
+          />
         </Switch>
       </div>
       <Footer />

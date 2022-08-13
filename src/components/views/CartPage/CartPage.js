@@ -5,8 +5,10 @@ import { message, Typography, Empty } from "antd";
 import UserCartBlock from "./Sections/UserCartBlock";
 import {
   getCartItems,
+  onSuccessBuy,
   removeProductFromCart,
 } from "../../../_actions/user_actions";
+import PayPal from "../../../utils/PayPal";
 
 const { Title } = Typography;
 
@@ -61,6 +63,19 @@ function CartPage(props) {
     setShowTotal(true);
     return newTotal;
   };
+
+  const transactionSuccess = (data) => {
+    dispatch(
+      onSuccessBuy({
+        paymentData: data,
+        cartDetail: user.cartDetail,
+      })
+    )
+      .then((result) => {
+        setShowTotal(false);
+      })
+      .catch((err) => {});
+  };
   return (
     <div style={{ width: "85%", margin: "4rem auto" }}>
       <div style={{ margin: "1rem auto" }}>
@@ -79,6 +94,8 @@ function CartPage(props) {
       ) : (
         <Empty />
       )}
+
+      {showTotal && <PayPal total={total} onSuccess={transactionSuccess} />}
     </div>
   );
 }

@@ -4,6 +4,7 @@ import {
   ADD_TO_CART,
   AUTH_USER,
   GET_CART_ITEMS,
+  ON_SUCCESS_BUY,
   REMOVE_FROM_CART,
   USER_LOGIN,
   USER_LOGOUT,
@@ -45,7 +46,7 @@ export function auth() {
 
 export function logout() {
   const request = axios
-    .get(`${USER_SERVER}/register`)
+    .get(`${USER_SERVER}/logout`)
     .then((result) => result.data);
 
   return {
@@ -103,6 +104,16 @@ export function removeProductFromCart(productId) {
 
   return {
     type: REMOVE_FROM_CART,
+    payload: request,
+  };
+}
+
+export function onSuccessBuy(data) {
+  const request = axios
+    .post(`${USER_SERVER}/successBuy`, data)
+    .then((result) => result.data);
+  return {
+    type: ON_SUCCESS_BUY,
     payload: request,
   };
 }

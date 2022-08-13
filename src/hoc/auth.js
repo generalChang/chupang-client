@@ -15,6 +15,10 @@ export default function Auth(SpecificComponent, option, adminRoute = null) {
             props.history.push("/login");
           }
         } else {
+          if (result.payload.passwordReset) {
+            props.history.push("/user/updatePassword");
+          }
+
           if (adminRoute && !result.payload.isAdmin) {
             props.history.push("/");
           } else {
