@@ -21,7 +21,7 @@ function FileUpload(props) {
     formData.append("file", files[0]);
 
     axios
-      .post("/api/product/image", formData, config)
+      .post(`${API_URL}/api/product/image`, formData, config)
       .then((result) => {
         if (result.data.success) {
           let newImages = [...images, result.data.url];

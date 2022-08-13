@@ -31,7 +31,7 @@ function LandingPage() {
   const [searchText, setSearchText] = useState("");
   const getProducts = (body) => {
     axios
-      .post(`/api/product/products`, body)
+      .post(`${API_URL}/api/product/products`, body)
       .then((result) => {
         if (result.data.success) {
           if (body.loadMore) {

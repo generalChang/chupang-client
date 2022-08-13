@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Input, Form, message, Button } from "antd";
 import axios from "axios";
+import { API_URL } from "../../Config";
+
 function UpdatePasswordPage(props) {
   const [password, setPassword] = useState("");
 
@@ -24,7 +26,7 @@ function UpdatePasswordPage(props) {
     };
 
     axios
-      .post("/api/users/updatePassword", body)
+      .post(`${API_URL}/api/users/updatePassword`, body)
       .then((result) => {
         if (result.data.success) {
           message.success("Successfully updated your password!!");

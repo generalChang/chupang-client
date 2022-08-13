@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Input, Form, message, Button } from "antd";
-
 import axios from "axios";
+import { API_URL } from "../../Config";
 function PasswordResetPage(props) {
   const [email, setEmail] = useState("");
 
@@ -21,7 +21,7 @@ function PasswordResetPage(props) {
       email,
     };
     axios
-      .post("/api/users/resetPassword", body)
+      .post(`${API_URL}/api/users/resetPassword`, body)
       .then((result) => {
         if (result.data.success) {
           message.success("Check your email and you'll find my message^^");

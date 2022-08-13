@@ -1,5 +1,5 @@
 import axios from "axios";
-import { USER_SERVER } from "../components/Config";
+import { API_URL, USER_SERVER } from "../components/Config";
 import {
   ADD_TO_CART,
   AUTH_USER,
@@ -13,7 +13,7 @@ import {
 
 export function register(body) {
   const request = axios
-    .post(`${USER_SERVER}/register`, body)
+    .post(`${API_URL}/${USER_SERVER}/register`, body)
     .then((result) => result.data);
 
   return {
@@ -24,7 +24,7 @@ export function register(body) {
 
 export function login(body) {
   const request = axios
-    .post(`${USER_SERVER}/login`, body)
+    .post(`${API_URL}/${USER_SERVER}/login`, body)
     .then((result) => result.data);
 
   return {
@@ -35,7 +35,7 @@ export function login(body) {
 
 export function auth() {
   const request = axios
-    .get(`${USER_SERVER}/auth`)
+    .get(`${API_URL}/${USER_SERVER}/auth`)
     .then((result) => result.data);
 
   return {
@@ -46,7 +46,7 @@ export function auth() {
 
 export function logout() {
   const request = axios
-    .get(`${USER_SERVER}/logout`)
+    .get(`${API_URL}/${USER_SERVER}/logout`)
     .then((result) => result.data);
 
   return {
@@ -57,7 +57,7 @@ export function logout() {
 
 export function addToCart(id) {
   const request = axios
-    .post(`${USER_SERVER}/addToCart`, { productId: id })
+    .post(`${API_URL}/${USER_SERVER}/addToCart`, { productId: id })
     .then((result) => result.data);
 
   return {
@@ -68,7 +68,7 @@ export function addToCart(id) {
 
 export function getCartItems(cartItemsId, cart) {
   const request = axios
-    .get(`/api/product/productById?type=array&id=${cartItemsId}`)
+    .get(`${API_URL}/api/product/productById?type=array&id=${cartItemsId}`)
     .then((result) => {
       cart.forEach((cartItem, index) => {
         result.data.products.forEach((productDetail, index) => {
@@ -89,7 +89,7 @@ export function getCartItems(cartItemsId, cart) {
 
 export function removeProductFromCart(productId) {
   const request = axios
-    .get(`${USER_SERVER}/removeFromCart?productId=${productId}`)
+    .get(`${API_URL}/${USER_SERVER}/removeFromCart?productId=${productId}`)
     .then((result) => {
       result.data.cart.forEach((item, index) => {
         result.data.productInfo.forEach((product, index) => {
@@ -110,7 +110,7 @@ export function removeProductFromCart(productId) {
 
 export function onSuccessBuy(data) {
   const request = axios
-    .post(`${USER_SERVER}/successBuy`, data)
+    .post(`${API_URL}/${USER_SERVER}/successBuy`, data)
     .then((result) => result.data);
   return {
     type: ON_SUCCESS_BUY,

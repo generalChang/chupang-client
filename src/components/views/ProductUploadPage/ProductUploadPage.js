@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Typography, Button, Input, Form, message } from "antd";
 import FileUpload from "../../../utils/FileUpload";
-import { Categorys } from "../../Config";
+import { API_URL, Categorys } from "../../Config";
 import axios from "axios";
 import { useSelector } from "react-redux";
+
 const { TextArea } = Input;
 const { Title } = Typography;
 function ProductUPloadPage(props) {
@@ -58,7 +59,7 @@ function ProductUPloadPage(props) {
     };
 
     axios
-      .post("/api/product/upload", body)
+      .post(`${API_URL}/api/product/upload`, body)
       .then((result) => {
         if (result.data.success) {
           message.success("Successfully upload your product!!");

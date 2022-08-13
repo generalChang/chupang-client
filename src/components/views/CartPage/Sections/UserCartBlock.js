@@ -2,6 +2,8 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { Button } from "antd";
 import "./UserCartBlock.css";
+import { API_URL } from "../../../Config";
+
 function UserCartBlock(props) {
   const renderProductDetails =
     props &&
@@ -12,7 +14,7 @@ function UserCartBlock(props) {
           <td>
             <img
               style={{ maxHeight: "80px" }}
-              src={`http://localhost:5000/${product.images[0]}`}
+              src={`${API_URL}/${product.images[0]}`}
               alt="product image"
             />
           </td>

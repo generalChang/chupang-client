@@ -4,7 +4,9 @@ import { Input, Button, Form, Divider, message } from "antd";
 import SingleComment from "./SingleComment";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { API_URL } from "../../../Config";
 const { TextArea } = Input;
+
 function Comment(props) {
   const [content, setContent] = useState("");
   const user = useSelector((state) => state.user);
@@ -38,7 +40,7 @@ function Comment(props) {
       productId: props.productId,
     };
     axios
-      .post("/api/comment/writeComment", body)
+      .post(`${API_URL}/api/comment/writeComment`, body)
       .then((result) => {
         if (result.data.success) {
           message.success("Successfully writed comment!!!");

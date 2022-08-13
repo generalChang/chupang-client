@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../../../_actions/user_actions";
 import { LikeOutlined, LikeFilled } from "@ant-design/icons";
 import axios from "axios";
+import { API_URL } from "../../../Config";
 function ProductDescription(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -19,7 +20,7 @@ function ProductDescription(props) {
         productId: props.detail._id,
       };
       axios
-        .post("/api/like/likes", body)
+        .post(`${API_URL}/api/like/likes`, body)
         .then((result) => {
           if (result.data.success) {
             setLikes(result.data.likesCount);
@@ -58,7 +59,7 @@ function ProductDescription(props) {
         }
       });
     } else {
-      message.warning("로그인을 해주세요.");
+      message.warning("You have to sign in first!");
       props.history.push("/login");
       return;
     }
@@ -80,7 +81,7 @@ function ProductDescription(props) {
         productId: props.detail._id,
       };
       axios
-        .post("/api/like/unlike", body)
+        .post(`${API_URL}/api/like/unlike`, body)
         .then((result) => {
           if (result.data.success) {
             message.success("Successfully canceled like to this product!!");
@@ -98,7 +99,7 @@ function ProductDescription(props) {
         productId: props.detail._id,
       };
       axios
-        .post("/api/like/uplike", body)
+        .post(`${API_URL}/api/like/uplike`, body)
         .then((result) => {
           if (result.data.success) {
             message.success("Successfully liked to this product!!");

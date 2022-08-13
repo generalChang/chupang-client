@@ -5,7 +5,7 @@ import axios from "axios";
 import ProductImage from "./Sections/ProductImage";
 import ProductDescription from "./Sections/ProductDescription";
 import Comment from "./Sections/Comment";
-
+import { API_URL } from "../../Config";
 const { Title } = Typography;
 function ProductDetailPage(props) {
   const productId = props.match.params.id;
@@ -16,7 +16,7 @@ function ProductDetailPage(props) {
   const [isNext, setIsNext] = useState(false);
   useEffect(() => {
     axios
-      .get(`/api/product/productById?type=single&id=${productId}`)
+      .get(`${API_URL}/api/product/productById?type=single&id=${productId}`)
       .then((result) => {
         if (result.data.success) {
           setProduct(result.data.products[0]);
@@ -38,7 +38,7 @@ function ProductDetailPage(props) {
 
   const getComments = (body) => {
     axios
-      .post("/api/comment/comments", body)
+      .post(`${API_URL}/api/comment/comments`, body)
       .then((result) => {
         if (result.data.success) {
           if (body.loadMore) {
