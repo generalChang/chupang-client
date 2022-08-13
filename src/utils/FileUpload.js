@@ -4,6 +4,8 @@ import Dropzone from "react-dropzone";
 import { PlusOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { message } from "antd";
+import { API_URL } from "../components/Config";
+
 function FileUpload(props) {
   const [images, setImages] = useState([]);
 
@@ -83,7 +85,7 @@ function FileUpload(props) {
                 height: "240px",
                 objectFit: "contain",
               }}
-              src={`http://localhost:5000/${image}`}
+              src={`${API_URL}/${image}`}
               alt="product image"
               onClick={() => {
                 handleDeleteImage(image);

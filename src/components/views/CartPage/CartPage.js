@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { message, Typography, Empty } from "antd";
+import { message, Typography, Empty, Result } from "antd";
 import UserCartBlock from "./Sections/UserCartBlock";
 import {
   getCartItems,
@@ -17,6 +17,7 @@ function CartPage(props) {
   const dispatch = useDispatch();
   const [total, setTotal] = useState(0);
   const [showTotal, setShowTotal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   useEffect(() => {
     let cartItems = [];
     if (user && user.userData && user.userData.cart) {
@@ -72,7 +73,12 @@ function CartPage(props) {
       })
     )
       .then((result) => {
-        setShowTotal(false);
+        if (result.payload.success) {
+          setShowTotal(false);
+          setShowSuccess(true);
+        } else {
+          message.warning("Failed to purchase Products...");
+        }
       })
       .catch((err) => {});
   };
@@ -87,10 +93,13 @@ function CartPage(props) {
         products={user.cartDetail}
         removeFromCart={removeFromCart}
       />
+
       {showTotal ? (
         <div style={{ marginTop: "3rem" }}>
           <h4>Total : {total} $</h4>
         </div>
+      ) : showSuccess ? (
+        <Result status="success" title="Successfully Purchased Products!" />
       ) : (
         <Empty />
       )}

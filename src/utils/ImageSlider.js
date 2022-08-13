@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Carousel } from "antd";
+import { API_URL } from "../components/Config";
 
 function ImageSlider(props) {
   return (
@@ -19,7 +20,7 @@ function ImageSlider(props) {
                   maxHeight: "150px",
                   objectFit: "contain",
                 }}
-                src={`http://localhost:5000/${image}`}
+                src={`${API_URL}/${image}`}
                 alt="carousel image"
               />
             </div>

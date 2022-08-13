@@ -11,6 +11,7 @@ import RegisterPage from "./views/RegisterPage/RegisterPage";
 import CartPage from "./views/CartPage/CartPage";
 import PasswordResetPage from "./views/PasswordResetPage/PasswordResetPage";
 import UpdatePasswordPage from "./views/UpdatePasswordPage/UpdatePasswordPage";
+import HistoryPage from "./views/HistoryPage/HistoryPage";
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
             exact
             component={Auth(UpdatePasswordPage, true)}
           />
+
+          <Route path="/history" exact component={Auth(HistoryPage, true)} />
         </Switch>
       </div>
       <Footer />

@@ -5,6 +5,10 @@ export const Gender = [
 
 export const USER_SERVER = "/api/users";
 
+export const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://chupang-server.herokuapp.com/"
+    : "http://localhost:5000";
 export const Categorys = [
   {
     key: 1,

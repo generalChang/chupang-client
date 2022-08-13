@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactImageGallery from "react-image-gallery";
 import { withRouter } from "react-router-dom";
-
+import { API_URL } from "../../../Config";
 function ProductImage(props) {
   const [images, setImages] = useState([]);
 
@@ -10,8 +10,8 @@ function ProductImage(props) {
       let newImages = [];
       props.images.map((image, index) => {
         newImages.push({
-          original: `http://localhost:5000/${image}`,
-          thumbnail: `http://localhost:5000/${image}`,
+          original: `${API_URL}/${image}`,
+          thumbnail: `${API_URL}/${image}`,
         });
       });
       setImages(newImages);

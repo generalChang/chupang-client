@@ -43,6 +43,7 @@ function NavBar(props) {
           )}
           {user && user.userData && user.userData.isAuth && (
             <Nav>
+              <Nav.Link href="/history">History</Nav.Link>
               <Nav.Link href="/user/cart">
                 <Badge count={user.userData && user.userData.cart.length}>
                   <ShoppingCartOutlined

@@ -11,7 +11,7 @@ export default function Auth(SpecificComponent, option, adminRoute = null) {
       dispatch(auth()).then((result) => {
         if (!result.payload.isAuth) {
           if (option) {
-            message.warning("로그인을 해주세요");
+            message.warning("You have to sign in first!!");
             props.history.push("/login");
           }
         } else {
