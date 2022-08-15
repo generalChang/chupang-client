@@ -34,6 +34,7 @@ export function login(body) {
 }
 
 export function auth() {
+  axios.defaults.withCredentials = true;
   const request = axios
     .get(`${API_URL}${USER_SERVER}/auth`, { withCredentials: true })
     .then((result) => result.data);
