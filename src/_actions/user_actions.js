@@ -13,7 +13,7 @@ import {
 
 export function register(body) {
   const request = axios
-    .post(`${API_URL}${USER_SERVER}/register`, body)
+    .post(`${API_URL}${USER_SERVER}/register`, body, { withCredentials: true })
     .then((result) => result.data);
 
   return {
@@ -24,7 +24,7 @@ export function register(body) {
 
 export function login(body) {
   const request = axios
-    .post(`${API_URL}${USER_SERVER}/login`, body)
+    .post(`${API_URL}${USER_SERVER}/login`, body, { withCredentials: true })
     .then((result) => result.data);
 
   return {
@@ -35,7 +35,7 @@ export function login(body) {
 
 export function auth() {
   const request = axios
-    .get(`${API_URL}${USER_SERVER}/auth`)
+    .get(`${API_URL}${USER_SERVER}/auth`, { withCredentials: true })
     .then((result) => result.data);
 
   return {
@@ -46,7 +46,7 @@ export function auth() {
 
 export function logout() {
   const request = axios
-    .get(`${API_URL}${USER_SERVER}/logout`)
+    .get(`${API_URL}${USER_SERVER}/logout`, { withCredentials: true })
     .then((result) => result.data);
 
   return {
