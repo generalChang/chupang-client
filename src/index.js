@@ -17,6 +17,7 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+document.cookie = "SameSite=None;Secure";
 root.render(
   <Provider
     store={createStoreWithMiddleware(
